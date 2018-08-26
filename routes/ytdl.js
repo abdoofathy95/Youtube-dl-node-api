@@ -9,7 +9,9 @@ router.get('/version', function(req, res, next) {
 
 router.get('/videoInfo', function(req, res, next) {
   const url = req.query.url;
-  const options = ['--no-playlist', '--skip-download', '--print-json', '--rm-cache-dir'];
+  const userAgent = req.headers['user-agent'];
+
+  const options = ['--no-playlist', '--skip-download', '--print-json', `--user-agent=${userAgent}`];
   youtubedl.getInfo(url, options, function(err, info){
     if(err) res.send(err);
     res.send(info);
