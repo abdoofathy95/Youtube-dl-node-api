@@ -17,11 +17,11 @@ router.get('/videoInfo', function(req, res, next) {
   const options = ['--no-playlist', '--skip-download', '--print-json', `--user-agent=${userAgent}`, `--cookies=${fileLocation}`, ];
   youtubedl.getInfo(url, options, function(err, info){
     if(err) res.send(err);
-    fs.readFile(fileLocation, 'utf8', function(err, contents) {
-      if(err) res.send(err);
+    // fs.readFile(fileLocation, 'utf8', function(err, contents) {
+      // if(err) res.send(err);
       res.json({info: info, cookie: contents});
-    });
-    fs.unlinkSync(fileLocation);
+    // });
+    // fs.unlinkSync(fileLocation);
   });
 })
 
